@@ -1,0 +1,133 @@
+// ? Design by Kevin (codepen: https://codepen.io/kzf/pen/vEYVmL)
+
+$white: white;
+$black: black;
+$background: #DEDEDE;
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: $background;
+    font-family: Verdana, sans-serif;
+}
+
+.bookshelf__wrapper {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-size: 10px 230px;
+
+    .bookshelf__bookStack-wrapper{
+        width: 200px;
+        height: 100%;
+        display: inline-flex;
+        flex-flow: column nowrap;
+        list-style: none;
+        padding: 0;
+
+        .bookshelf__bookStack-outOfStock{
+            background: #232323;
+            color: #fff;
+            height: 150px;
+            padding: 0;
+            margin: 50px 1px auto 1px;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 1.25px;
+            border-radius: 6px;
+        }
+        
+        .bookshelf__bookstack-elem{
+            .bookshelf__book-wrapper{
+                width: 100%;
+                height: 40px;
+                margin: 0;
+    
+                .bookshelf__book-title{
+                    width: 140px;
+                    height: 40px;
+                    transform: rotate(0deg);
+                    margin-left: 29px;
+                    margin-top: 0;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .bookshelf__book-wrapper {
+        height: 200px;
+        width: 40px;
+        float: left;
+        color: white;
+        font-size: 0.9em;
+        margin: 20px 1px 10px 1px;
+        border-radius: 4px;
+        transition: transform 0.4s ease;
+        position: relative;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        .bookshelf__book-title {
+            padding: 0;
+            font-size: 1em;
+            transform-origin: 0% 0%;
+            transform: rotate(90deg);
+            text-align: center;
+        }
+    }
+
+    .bookshelf__book-tilted {
+        float: left;
+        width: 75px;
+
+        .bookshelf__book-wrapper{
+            width: 40px !important;
+        }
+
+        &:hover .bookshelf__book-wrapper{
+            transform: translateY(-20px);
+        }
+
+        & > .bookshelf__book-wrapper{
+            transform: translateY(-22px) translateX(16px) rotate(9deg) ;
+        }
+    }
+
+    .bookshelf__book-onDisplay{
+        width: 150px;
+        height: 200px;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        margin: 20px 2px 10px 2px;
+        position: relative;
+
+        .bookshelf__book-title, .bookshelf__book-subtitle{
+            width: calc(100% - 13px);
+            transform: rotate(0deg);
+            margin-left: 13px;
+        }
+
+        .bookshelf__book-title{
+            font-size: 1.0em;
+        }
+
+        .bookshelf__book-author{
+            font-size: 0.8em;
+            margin-left: 13px;
+        }
+    }
+}
