@@ -1,27 +1,28 @@
 import styled from "styled-components";
 
-export const BookDefault = styled.div.attrs<{$color?: string, $width?: number, $margin?: any}>(props => ({
-    $color: props.$color || "green",
-    $width: props.$width || 40,
-    $margin: props.$margin || "1em",
+const DEFAULT_WIDTH: number = 40;
+const DEFAULT_COLOR: string = "green";
+
+export const BookDefault = styled.div.attrs<{$color?: string, $width?: number}>(props => ({
+    $color: props.$color || DEFAULT_COLOR,
+    $width: props.$width || DEFAULT_WIDTH,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
     border-right: 2px solid color-mix(in srgb, ${props => props.$color}, black 4%);
 
     &{
-        .bookshelf__book-title{
+        .bookshelf__book-content{
             height: calc(${props => props.$width}px);
             width: calc(200px - 60px);
-            margin: 30px 0 0 calc(50% + ${props => props.$margin});
+            margin: 0 ${props => props.$width}px;
         }
     }
 `;
 
-export const BookColoredSpine = styled.div.attrs<{$color?: string, $width?: number, $margin?: any}>(props => ({
-    $color: props.$color || "green",
-    $width: props.$width || 40,
-    $margin: props.$margin || "1em"
+export const BookColoredSpine = styled.div.attrs<{$color?: string, $width?: number}>(props => ({
+    $color: props.$color || DEFAULT_COLOR,
+    $width: props.$width || DEFAULT_WIDTH,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
@@ -41,18 +42,17 @@ export const BookColoredSpine = styled.div.attrs<{$color?: string, $width?: numb
             left: -2px;
         }
 
-        .bookshelf__book-title{
+        .bookshelf__book-content{
             height: calc(${props => props.$width}px);
             width: calc(200px - 60px);
-            margin: 30px 0 0 calc(50% + ${props => props.$margin});
+            margin: 0 ${props => props.$width}px;
         }
     }
 `;
 
-export const BookSplitBands = styled.div.attrs<{$color?: string, $width?: number, $margin: any}>(props => ({
-    $color: props.$color || "green",
-    $width: props.$width || 40,
-    $margin: props.$margin || "1em"
+export const BookSplitBands = styled.div.attrs<{$color?: string, $width?: number}>(props => ({
+    $color: props.$color || DEFAULT_COLOR,
+    $width: props.$width || DEFAULT_WIDTH,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
@@ -84,18 +84,17 @@ export const BookSplitBands = styled.div.attrs<{$color?: string, $width?: number
             z-index: 2;
         }
 
-        .bookshelf__book-title{
+        .bookshelf__book-content{
             height: calc(${props => props.$width}px);
-            width: calc(200px - 60px);
-            margin: 30px 0 0 calc(50% + ${props => props.$margin});
+            width: calc(200px - 60px) !important;
+            margin: 30px ${props => props.$width}px;
         }
     }
 `;
 
-export const BookDualTopBands = styled.div.attrs<{$color?: string, $width?: number, $margin?: any}>(props => ({
-    $color: props.$color || "green",
-    $width: props.$width || 40,
-    $margin: props.$margin || "1em"
+export const BookDualTopBands = styled.div.attrs<{$color?: string, $width?: number}>(props => ({
+    $color: props.$color || DEFAULT_COLOR,
+    $width: props.$width || DEFAULT_WIDTH,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
@@ -127,10 +126,10 @@ export const BookDualTopBands = styled.div.attrs<{$color?: string, $width?: numb
             z-index: 2;
         }
 
-        .bookshelf__book-title{
+        .bookshelf__book-content{
             height: calc(${props => props.$width}px);
-            width: calc(200px - 41px);
-            margin: 41px 0 0 calc(50% + ${props => props.$margin});
+            width: calc(200px - 41px) !important;
+            margin: 41px ${props => props.$width}px;
         }
     }
 `;

@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
-import Book from "./Book";
-import BookStackElement from "./BookStackElement";
-import { BookshelfDefault } from "../utils/BookshelfDesign";
+import {Book, BookStack, BookStackElement } from "../components";
+import { BookshelfDefault } from "../utils/Designs/BookshelfDesign";
 import * as Themes from "../utils/BookshelfThemes";
-import BookStack from "./BookStack";
+import { design_db, orientation_db } from "../utils/storage_DB";
+
+import "../styles/index.scss";
+
+export const themes_db: any = {
+    "beige": Themes.beigeMomTheme,
+    "shades of purple" : Themes.shadesOfPurpleTheme,
+    "night owl" : Themes.nightOwlTheme,
+    "gruvbox" : Themes.gruvboxTheme,
+    "vue": Themes.vueTheme,
+    "barbie" : Themes.barbieTheme,
+};
 
 interface Props{
     children: JSX.Element[] | JSX.Element;
@@ -11,39 +21,12 @@ interface Props{
     theme?: Themes.ThemeInterface | string | undefined;
 }
 
-export const colors_db: Array<string> = ["green", "blue", "umber", "springer", "maroon", "pink", "cyan", "purple"];
-const design_db: Array<string> = ["no bands", "split bands", "dual top bands", "colored spine"];
-const orientation_db: Array<string> = ["default", "tilted", "onDisplay", "stack"];
-
-const defaultTheme: Themes.ThemeInterface = {
-    bookshelf: "#A87328",
-    colors: colors_db
-}
-
 const BookShelf = ({children, bookCount, theme}: Props) => {
-    const [colorSelection, setColorSelection] = useState<Themes.ThemeInterface>(defaultTheme);
+    const [colorSelection, setColorSelection] = useState<Themes.ThemeInterface>(Themes.defaultTheme);
 
     useEffect(() => {
-        if(typeof theme === "string" || theme instanceof String){
-            switch(theme){
-                case "beige":
-                    setColorSelection(Themes.beigeMomTheme);
-                    break;
-                case "shades of purple":
-                    setColorSelection(Themes.shadesOfPurpleTheme);
-                    break;
-                case "night owl":
-                    setColorSelection(Themes.nightOwlTheme);
-                    break;
-                case "gruvbox":
-                    setColorSelection(Themes.gruvboxTheme);
-                    break;
-                case "vue":
-                    setColorSelection(Themes.vueTheme);
-                    break;
-                default:
-                    setColorSelection(defaultTheme);
-            }
+        if(typeof theme === "string"){
+            theme ? setColorSelection(themes_db[theme]) : setColorSelection(Themes.defaultTheme);
         } else if(typeof theme === "object"){
             setColorSelection(theme);
         }

@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
+const DEFAULT_COLOR: string = "green";
+
 export const BookStackDefault = styled.div.attrs<{$color?: string}>(props => ({
-    $color: props.$color || "green",
+    $color: props.$color || DEFAULT_COLOR,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
@@ -9,7 +11,7 @@ export const BookStackDefault = styled.div.attrs<{$color?: string}>(props => ({
 `;
 
 export const BookStackColoredSpine = styled.div.attrs<{$color?: string}>(props => ({
-    $color: props.$color || "green",
+    $color: props.$color || DEFAULT_COLOR,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
@@ -31,8 +33,8 @@ export const BookStackColoredSpine = styled.div.attrs<{$color?: string}>(props =
     }
 `;
 
-export const BookStackSplitBands = styled.div.attrs<{$color?: string}>(props => ({
-    $color: props.$color || "green",
+export const BookStackSplitBands = styled.div.attrs<{$color?: string, $width?: number}>(props => ({
+    $color: props.$color || DEFAULT_COLOR,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
@@ -63,11 +65,16 @@ export const BookStackSplitBands = styled.div.attrs<{$color?: string}>(props => 
             right: 10px;
             z-index: 2;
         }
+
+        .bookshelf__book-content{
+            width: calc(200px - 60px) !important;
+            margin: 0 30px;
+        }
     }
 `;
 
 export const BookStackDualTopBands = styled.div.attrs<{$color?: string}>(props => ({
-    $color: props.$color || "green",
+    $color: props.$color || DEFAULT_COLOR,
 }))`
     background: ${props => props.$color};
     border-left: 2px solid color-mix(in srgb, ${props => props.$color}, white 4%);
@@ -97,6 +104,11 @@ export const BookStackDualTopBands = styled.div.attrs<{$color?: string}>(props =
             top: 0px;
             left: 24px;
             z-index: 2;
+        }
+
+        .bookshelf__book-content{
+            width: calc(200px - 31px) !important;
+            margin: 0 31px;
         }
     }
 `;

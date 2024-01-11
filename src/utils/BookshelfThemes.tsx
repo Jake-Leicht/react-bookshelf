@@ -1,6 +1,12 @@
+import { colors_db } from "./storage_DB"
 export interface ThemeInterface{
     bookshelf: string,
     colors: Array<string>
+}
+
+export const defaultTheme: ThemeInterface = {
+    bookshelf: "#A87328",
+    colors: colors_db
 }
 
 export const beigeMomTheme: ThemeInterface = {
@@ -24,4 +30,9 @@ export const gruvboxTheme: ThemeInterface = {
 export const vueTheme: ThemeInterface = {
     bookshelf: "#012933",
     colors: ["#93294D", "#82c7D2", "#1587D0", "#AD4365"]
+}
+
+export const barbieTheme: ThemeInterface = {
+    bookshelf: "#F7CAD0",
+    colors: ["#FF0A54", "#FF5C8A", "#FF85A1", "#FBB1BD"]
 }

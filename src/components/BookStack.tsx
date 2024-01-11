@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from "react";
-import { colors_db } from "./BookShelf";
+import { colors_db } from "../utils/storage_DB";
 import * as Themes from "../utils/BookshelfThemes";
 
 interface BookStackProps{
     children: JSX.Element[] | JSX.Element;
     stackDesign?: string;
     theme?: string | string[] | undefined;
-    // height?: number;    // todo: future add-ons
-    // width?: number;     // todo: future add-ons
 }
 
 const BookStack = ({children, stackDesign, theme}: BookStackProps) => {
@@ -34,6 +32,18 @@ const BookStack = ({children, stackDesign, theme}: BookStackProps) => {
         }
     }, [theme]);
 
+    function returnPropsObject(color_index: number){
+        if(stackDesign !== undefined && theme !== undefined){
+            return { design: stackDesign, color: colorSelection[color_index] };
+        } else if(stackDesign !== undefined){
+            return { design: stackDesign };
+        } else if(theme !== undefined){
+            return { color: colorSelection[color_index] };
+        } else{
+            return {};
+        }
+    }
+
     const renderArrayChildren = (children: JSX.Element[]) => {
         return(<>
             <ul style={{margin: `calc(20px + ${(MAX_CHILDREN - children.length) * 40}px) 1px 10px 1px`}} className="bookshelf__bookStack-wrapper">
@@ -50,7 +60,7 @@ const BookStack = ({children, stackDesign, theme}: BookStackProps) => {
                             let color_index = Math.floor(Math.random() * colorSelection.length);
     
                             return(<li key={index} className="bookshelf__bookstack-elem">
-                                {React.cloneElement(child, { design: stackDesign, color: colorSelection[color_index] })}
+                                {React.cloneElement(child, returnPropsObject(color_index))}
                             </li>);
                         })}
                     </>}
@@ -63,7 +73,7 @@ const BookStack = ({children, stackDesign, theme}: BookStackProps) => {
             let color_index = Math.floor(Math.random() * colorSelection.length);
             return(
                 <li key={0} className="bookshelf__bookstack-elem">
-                    {React.cloneElement(children, { design: stackDesign, color: colorSelection[color_index] })}
+                    {React.cloneElement(children, returnPropsObject(color_index))}
                 </li>);
         }
 
